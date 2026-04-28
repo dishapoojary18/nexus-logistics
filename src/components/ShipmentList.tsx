@@ -192,13 +192,14 @@ export default function ShipmentList({ shipments, selectedId, onSelect }: Shipme
                       e.stopPropagation();
                       setShowHistory(!showHistory);
                     }}
-                    className="w-full flex items-center justify-between text-[8px] uppercase font-bold text-slate-500 hover:text-slate-300 transition-colors py-2 border-b border-slate-800/50"
+                    className="w-full flex items-center justify-between px-3 py-2 bg-slate-800/40 hover:bg-slate-800/60 border border-slate-700/50 rounded-md transition-all group"
                   >
-                    <div className="flex items-center gap-1.5">
-                      <History className="w-3 h-3" />
-                      <span>Transit Logs ({s.history.length})</span>
+                    <div className="flex items-center gap-2">
+                      <History className="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-400 transition-colors" />
+                      <span className="text-[10px] font-bold uppercase tracking-tight text-slate-300">View Full History</span>
+                      <span className="text-[9px] font-mono text-slate-500 bg-black/30 px-1.5 rounded">{s.history.length}</span>
                     </div>
-                    {showHistory ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                    {showHistory ? <ChevronUp className="w-3.5 h-3.5 text-slate-500" /> : <ChevronDown className="w-3.5 h-3.5 text-slate-500" />}
                   </button>
                   
                   <AnimatePresence>
@@ -209,7 +210,7 @@ export default function ShipmentList({ shipments, selectedId, onSelect }: Shipme
                         exit={{ opacity: 0, height: 0 }}
                         className="overflow-hidden"
                       >
-                        <div className="flex flex-col gap-2 relative pl-3 mt-4 before:content-[''] before:absolute before:left-[5px] before:top-1 before:bottom-1 before:w-[1px] before:bg-slate-800">
+                        <div className="max-h-48 overflow-y-auto custom-scrollbar mt-4 pr-1 flex flex-col gap-3 relative pl-3 before:content-[''] before:absolute before:left-[5px] before:top-1 before:bottom-1 before:w-[1px] before:bg-slate-800">
                           {s.history.slice().reverse().map((event, idx) => (
                             <div key={idx} className="relative">
                               <div className="absolute -left-[11px] top-1 w-1.5 h-1.5 rounded-full bg-slate-700 border border-slate-900" />
@@ -221,8 +222,8 @@ export default function ShipmentList({ shipments, selectedId, onSelect }: Shipme
                                   {new Date(event.timestamp).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' })}
                                 </span>
                               </div>
-                              <p className="text-[8px] text-slate-500 font-mono">
-                                {event.location.lat.toFixed(2)}N, {event.location.lng.toFixed(2)}E
+                              <p className="text-[8px] text-slate-500 font-mono mt-0.5">
+                                LOC: {event.location.lat.toFixed(2)}N, {event.location.lng.toFixed(2)}E
                               </p>
                             </div>
                           ))}
