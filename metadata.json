@@ -1,0 +1,10 @@
+{
+  "name": "Nexus Logistics Control",
+  "description": "An AI-powered smart supply chain optimizer that preemptively detects disruptions and dynamically re-routes global shipments for maximum resilience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "AI Route Optimization",
+    "Real-time Disruption Monitoring",
+    "Global Transit Simulation"
+  ]
+}
